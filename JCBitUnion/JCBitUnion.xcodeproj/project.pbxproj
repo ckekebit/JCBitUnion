@@ -35,10 +35,10 @@
 		D95709641BCE334500B33C17 /* JCBUPostDetailedBody.m in Sources */ = {isa = PBXBuildFile; fileRef = D95709631BCE334500B33C17 /* JCBUPostDetailedBody.m */; };
 		D96B40921BD422390045AE32 /* JCBUReferencedPostView.m in Sources */ = {isa = PBXBuildFile; fileRef = D96B40911BD422390045AE32 /* JCBUReferencedPostView.m */; };
 		D97AAB261BF201EF002A773A /* JCBUPostNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97AAB251BF201EF002A773A /* JCBUPostNavigationView.m */; };
+		D98136831C02810900E8ECD4 /* JCBUUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D98136821C02810900E8ECD4 /* JCBUUserInfoView.m */; };
 		D9AA6EA61BF34402004CD43B /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D9AA6EA41BF34402004CD43B /* left_arrow.png */; };
 		D9AA6EA71BF34402004CD43B /* right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D9AA6EA51BF34402004CD43B /* right_arrow.png */; };
 		D9AA6EAB1BF34526004CD43B /* favorites.png in Resources */ = {isa = PBXBuildFile; fileRef = D9AA6EAA1BF34526004CD43B /* favorites.png */; };
-		D9AEA1951BB92EE700D3C8E6 /* JCBUUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9AEA1941BB92EE700D3C8E6 /* JCBUUserInfoView.m */; };
 		D9AEA1981BB9316300D3C8E6 /* JCBUDetailedUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D9AEA1971BB9316300D3C8E6 /* JCBUDetailedUserInfo.m */; };
 		D9AEA19B1BB933FF00D3C8E6 /* JCBUUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9AEA19A1BB933FF00D3C8E6 /* JCBUUserInfoViewController.m */; };
 		D9BB2E8F1BCCDA5300778D31 /* JCBUPostDetailedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BB2E8E1BCCDA5300778D31 /* JCBUPostDetailedInfo.m */; };
@@ -121,11 +121,11 @@
 		D96B40911BD422390045AE32 /* JCBUReferencedPostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUReferencedPostView.m; sourceTree = "<group>"; };
 		D97AAB241BF201EF002A773A /* JCBUPostNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBUPostNavigationView.h; sourceTree = "<group>"; };
 		D97AAB251BF201EF002A773A /* JCBUPostNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUPostNavigationView.m; sourceTree = "<group>"; };
+		D98136811C02810900E8ECD4 /* JCBUUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBUUserInfoView.h; sourceTree = "<group>"; };
+		D98136821C02810900E8ECD4 /* JCBUUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUUserInfoView.m; sourceTree = "<group>"; };
 		D9AA6EA41BF34402004CD43B /* left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_arrow.png; sourceTree = "<group>"; };
 		D9AA6EA51BF34402004CD43B /* right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_arrow.png; sourceTree = "<group>"; };
 		D9AA6EAA1BF34526004CD43B /* favorites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorites.png; sourceTree = "<group>"; };
-		D9AEA1931BB92EE700D3C8E6 /* JCBUUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JCBUUserInfoView.h; path = ../JCBUUserInfoView.h; sourceTree = "<group>"; };
-		D9AEA1941BB92EE700D3C8E6 /* JCBUUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JCBUUserInfoView.m; path = ../JCBUUserInfoView.m; sourceTree = "<group>"; };
 		D9AEA1961BB9316300D3C8E6 /* JCBUDetailedUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBUDetailedUserInfo.h; sourceTree = "<group>"; };
 		D9AEA1971BB9316300D3C8E6 /* JCBUDetailedUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUDetailedUserInfo.m; sourceTree = "<group>"; };
 		D9AEA1991BB933FF00D3C8E6 /* JCBUUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBUUserInfoViewController.h; sourceTree = "<group>"; };
@@ -296,12 +296,12 @@
 		D96B40891BD421020045AE32 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
+				D98136811C02810900E8ECD4 /* JCBUUserInfoView.h */,
+				D98136821C02810900E8ECD4 /* JCBUUserInfoView.m */,
 				D9AEA1961BB9316300D3C8E6 /* JCBUDetailedUserInfo.h */,
 				D9AEA1971BB9316300D3C8E6 /* JCBUDetailedUserInfo.m */,
 				D904703E1BA695BE00BF14BA /* JCBUUser.h */,
 				D904703F1BA695BE00BF14BA /* JCBUUser.m */,
-				D9AEA1931BB92EE700D3C8E6 /* JCBUUserInfoView.h */,
-				D9AEA1941BB92EE700D3C8E6 /* JCBUUserInfoView.m */,
 				D9AEA1991BB933FF00D3C8E6 /* JCBUUserInfoViewController.h */,
 				D9AEA19A1BB933FF00D3C8E6 /* JCBUUserInfoViewController.m */,
 			);
@@ -513,11 +513,11 @@
 				D90470371BA5163C00BF14BA /* JCBULogInViewController.m in Sources */,
 				D90A13E71BF8214F00F5B2D4 /* JCBUForumThreadViewController.m in Sources */,
 				D97AAB261BF201EF002A773A /* JCBUPostNavigationView.m in Sources */,
+				D98136831C02810900E8ECD4 /* JCBUUserInfoView.m in Sources */,
 				D9AEA19B1BB933FF00D3C8E6 /* JCBUUserInfoViewController.m in Sources */,
 				D9FC6E2A1BAF4A56006F6869 /* JCBUMainTabBarViewController.m in Sources */,
 				D9FC6E481BAFEA12006F6869 /* JCBUFirstPageViewController.m in Sources */,
 				D90470181BA510AB00BF14BA /* AppDelegate.m in Sources */,
-				D9AEA1951BB92EE700D3C8E6 /* JCBUUserInfoView.m in Sources */,
 				D9EDFD331BC2403400C248ED /* JUBUOverlayButton.m in Sources */,
 				D904703A1BA690B700BF14BA /* JCBULogOutView.m in Sources */,
 				D9FC6E4F1BAFEC08006F6869 /* JCBUFavoritesViewController.m in Sources */,
