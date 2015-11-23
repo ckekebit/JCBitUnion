@@ -13,6 +13,7 @@
 @property (nonatomic) UILabel *subjectLabel;
 @property (nonatomic) UIView *separator;
 @property (nonatomic) UITextView *textView;
+@property (nonatomic) UIActivityIndicatorView *loadingIndicator;
 
 - (instancetype)initWithSubject:(NSString *)subject;
 

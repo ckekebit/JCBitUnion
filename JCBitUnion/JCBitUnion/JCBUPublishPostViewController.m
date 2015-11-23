@@ -55,6 +55,7 @@
                                                                                                                                      
 - (void)_didTapPost:(id)sender
 {
+  [_publishPostView.loadingIndicator startAnimating];
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^() {
     NSError *error;
     NSMutableDictionary *publishPostDict = [NSMutableDictionary new];
@@ -109,6 +110,11 @@
     if (response.statusCode >= 200 && response.statusCode < 300) {
       NSString *responseData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
       NSLog(@"Response ==> %@", responseData);
+      
+      dispatch_async(dispatch_get_main_queue(), ^() {
+        [_publishPostView.loadingIndicator stopAnimating];
+        [self.navigationController popViewControllerAnimated:YES];
+      });
       
     } else {
       NSLog(@"Connection failed");

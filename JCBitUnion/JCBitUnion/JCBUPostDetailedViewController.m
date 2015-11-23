@@ -54,6 +54,7 @@ static const CGFloat kPostSubjectHeight = 50.0;
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(_didTapNewPost:)];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
     _postDetailedView = [[JCBUPostDetailedView alloc] init];
     _postDetailedView.tableView.dataSource = self;
@@ -342,6 +343,7 @@ static const CGFloat kPostSubjectHeight = 50.0;
 
         dispatch_async(dispatch_get_main_queue(), ^(){
           [_postDetailedView.loadingIndicator stopAnimating];
+          self.navigationItem.rightBarButtonItem.enabled = YES;
           _postDetailedView.postNavigationView.pageLabel.text = [NSString stringWithFormat:@"%li / %li", _currentPage, _postReplyPageNumber];
           _postDetailedView.postNavigationView.leftButton.enabled = _currentPage > 1 ? YES : NO;
           _postDetailedView.postNavigationView.leftMostButton.enabled = _currentPage > 1 ? YES : NO;

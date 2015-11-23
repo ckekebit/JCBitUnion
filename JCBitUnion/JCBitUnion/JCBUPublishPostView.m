@@ -32,6 +32,9 @@ static const CGFloat kSubjectViewHeight = 50;
     _textView.font = [UIFont systemFontOfSize:14];
     [self addSubview:_textView];
     
+    _loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self addSubview:_loadingIndicator];
+    
     self.backgroundColor = [UIColor whiteColor];
   }
   
@@ -54,6 +57,8 @@ static const CGFloat kSubjectViewHeight = 50;
   
   yOffset += 10;
   _textView.frame = CGRectMake(kEdgeHorizontalPadding, yOffset, bounds.size.width - kEdgeHorizontalPadding * 2, 200);
+  
+  _loadingIndicator.frame = CGRectMake((bounds.size.width - 32) / 2, 200, 32, 32);
 }
 
 @end
