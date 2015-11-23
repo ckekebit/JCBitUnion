@@ -149,9 +149,15 @@
           [_firstPageView.tableView reloadData];
         });
       } else {
+        dispatch_async(dispatch_get_main_queue(), ^(){
+          [_firstPageView.loadingIndicator stopAnimating];
+        });
         NSLog(@"Fetch recent posts failed: %@", responseDict[@"msg"]);
       }
     } else {
+      dispatch_async(dispatch_get_main_queue(), ^(){
+        [_firstPageView.loadingIndicator stopAnimating];
+      });
       NSLog(@"Server failed when fetching user info");
     }
   });

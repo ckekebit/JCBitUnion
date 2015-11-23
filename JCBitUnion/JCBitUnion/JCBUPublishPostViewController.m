@@ -56,6 +56,7 @@
 - (void)_didTapPost:(id)sender
 {
   [_publishPostView.loadingIndicator startAnimating];
+  
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^() {
     NSError *error;
     NSMutableDictionary *publishPostDict = [NSMutableDictionary new];
@@ -117,6 +118,9 @@
       });
       
     } else {
+      dispatch_async(dispatch_get_main_queue(), ^() {
+        [_publishPostView.loadingIndicator stopAnimating];
+      });
       NSLog(@"Connection failed");
     }
     

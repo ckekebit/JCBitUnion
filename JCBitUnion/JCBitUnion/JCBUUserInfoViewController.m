@@ -53,8 +53,6 @@
 {
   [super viewDidLoad];
   
-  [_userInfoView.loadingIndicator startAnimating];
-  
   self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
@@ -225,6 +223,8 @@
 
 - (JCBUDetailedUserInfo *)_fetchDetailedUserInfo:(JCBUUser *)userInfo
 {
+  [_userInfoView.loadingIndicator startAnimating];
+  
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^() {
     NSError *error;
     NSMutableDictionary *detailedUserInfoDict = [NSMutableDictionary new];
@@ -276,9 +276,17 @@
         
         [self _fetchUserAvatar:detailedUserInfo];
       } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [_userInfoView.loadingIndicator stopAnimating];
+        });
+        
         NSLog(@"Fetch user info failed: %@", responseDict[@"msg"]);
       }
     } else {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [_userInfoView.loadingIndicator stopAnimating];
+      });
+      
       NSLog(@"Server failed when fetching user info");
     }
   });

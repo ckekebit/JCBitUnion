@@ -126,15 +126,18 @@
                                                     lastActivity:responseDict[@"lastactivity"]];
       
         dispatch_async(dispatch_get_main_queue(), ^(){
+          [_logInView.loadingIndicator stopAnimating];
           JCBUMainTabBarViewController *mainTabBarVC = [[JCBUMainTabBarViewController alloc] initWithUserInfo:userInfo];
           [self presentViewController:mainTabBarVC animated:YES completion:nil];
         });
       } else {
+        dispatch_async(dispatch_get_main_queue(), ^(){
+          [_logInView.loadingIndicator stopAnimating];
+        });
         NSLog(@"Log in failed: %@", responseDict[@"msg"]);
       }
     } else {
       NSLog(@"Connection failed");
-      
       dispatch_async(dispatch_get_main_queue(), ^{
         [_logInView.loadingIndicator stopAnimating];
       });
