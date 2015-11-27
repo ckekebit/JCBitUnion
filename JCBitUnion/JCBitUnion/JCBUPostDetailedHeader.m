@@ -31,7 +31,7 @@
     
     _imageViewOverlayButton = [[JUBUOverlayButton alloc] init];
     _imageViewOverlayButton.backgroundColor = [UIColor clearColor];
-    [_imageViewOverlayButton addTarget:self action:@selector(didTapAuthor) forControlEvents:UIControlEventTouchUpInside];
+    [_imageViewOverlayButton addTarget:self action:@selector(didTapProfilePicture) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_imageViewOverlayButton];
     
     _nameLabel = [[UILabel alloc] init];
@@ -93,6 +93,11 @@
 - (void)didTapAuthor
 {
   [_delegate didTapAuthor:_nameLabel.text];
+}
+
+- (void)didTapProfilePicture
+{
+  [_delegate didTapProfilePicture:_imageView.image];
 }
 
 @end

@@ -27,6 +27,8 @@
 		D90A13ED1BF8663D00F5B2D4 /* JCBUForumThreadListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D90A13EC1BF8663D00F5B2D4 /* JCBUForumThreadListCell.m */; };
 		D91E79121BFDBAAD0010F63A /* JCBUPublishPostView.m in Sources */ = {isa = PBXBuildFile; fileRef = D91E79111BFDBAAD0010F63A /* JCBUPublishPostView.m */; };
 		D91E79151BFDBCFE0010F63A /* JCBUPublishPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91E79141BFDBCFE0010F63A /* JCBUPublishPostViewController.m */; };
+		D946535D1C05B39700C98202 /* JCBUImageDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D946535C1C05B39700C98202 /* JCBUImageDisplayView.m */; };
+		D94653601C05B58B00C98202 /* JCBUImageDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D946535F1C05B58B00C98202 /* JCBUImageDisplayViewController.m */; };
 		D946C9841BB3FC31009161C9 /* male_outline.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D946C9831BB3FC31009161C9 /* male_outline.jpg */; };
 		D946C9861BB3FC86009161C9 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = D946C9851BB3FC86009161C9 /* logout.png */; };
 		D94F3CB81BFC404900219860 /* double_right.png in Resources */ = {isa = PBXBuildFile; fileRef = D94F3CB61BFC404900219860 /* double_right.png */; };
@@ -110,6 +112,10 @@
 		D91E79111BFDBAAD0010F63A /* JCBUPublishPostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUPublishPostView.m; sourceTree = "<group>"; };
 		D91E79131BFDBCFE0010F63A /* JCBUPublishPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBUPublishPostViewController.h; sourceTree = "<group>"; };
 		D91E79141BFDBCFE0010F63A /* JCBUPublishPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUPublishPostViewController.m; sourceTree = "<group>"; };
+		D946535B1C05B39700C98202 /* JCBUImageDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBUImageDisplayView.h; sourceTree = "<group>"; };
+		D946535C1C05B39700C98202 /* JCBUImageDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUImageDisplayView.m; sourceTree = "<group>"; };
+		D946535E1C05B58B00C98202 /* JCBUImageDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBUImageDisplayViewController.h; sourceTree = "<group>"; };
+		D946535F1C05B58B00C98202 /* JCBUImageDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUImageDisplayViewController.m; sourceTree = "<group>"; };
 		D946C9831BB3FC31009161C9 /* male_outline.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = male_outline.jpg; sourceTree = "<group>"; };
 		D946C9851BB3FC86009161C9 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		D94F3CB61BFC404900219860 /* double_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = double_right.png; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 		D90470111BA510AB00BF14BA /* JCBitUnion */ = {
 			isa = PBXGroup;
 			children = (
+				D946535A1C05B2AC00C98202 /* ImageDisplay */,
 				D91E790F1BFDB91B0010F63A /* PublishPost */,
 				D96B408F1BD421A00045AE32 /* Favorites */,
 				D96B408E1BD421940045AE32 /* Firstpage */,
@@ -268,6 +275,17 @@
 				D91E79141BFDBCFE0010F63A /* JCBUPublishPostViewController.m */,
 			);
 			name = PublishPost;
+			sourceTree = "<group>";
+		};
+		D946535A1C05B2AC00C98202 /* ImageDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				D946535B1C05B39700C98202 /* JCBUImageDisplayView.h */,
+				D946535C1C05B39700C98202 /* JCBUImageDisplayView.m */,
+				D946535E1C05B58B00C98202 /* JCBUImageDisplayViewController.h */,
+				D946535F1C05B58B00C98202 /* JCBUImageDisplayViewController.m */,
+			);
+			name = ImageDisplay;
 			sourceTree = "<group>";
 		};
 		D96B40881BD420CA0045AE32 /* PostThread */ = {
@@ -508,6 +526,8 @@
 				D904704C1BA6C07100BF14BA /* JCBUForumGroupListViewController.m in Sources */,
 				D90A13DB1BF73ACC00F5B2D4 /* JCBUForumGroupInfo.m in Sources */,
 				D9EDFD2D1BC22C9500C248ED /* JCBUFirstPageView.m in Sources */,
+				D946535D1C05B39700C98202 /* JCBUImageDisplayView.m in Sources */,
+				D94653601C05B58B00C98202 /* JCBUImageDisplayViewController.m in Sources */,
 				D9EDFD301BC2309B00C248ED /* JCBUFirstPagePostCell.m in Sources */,
 				D96B40921BD422390045AE32 /* JCBUReferencedPostView.m in Sources */,
 				D90470371BA5163C00BF14BA /* JCBULogInViewController.m in Sources */,

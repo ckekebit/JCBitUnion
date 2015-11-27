@@ -16,6 +16,7 @@
 #import "JCBUPostNavigationView.h"
 #import "JCBUUserInfoViewController.h"
 #import "JCBUPublishPostViewController.h"
+#import "JCBUImageDisplayViewController.h"
 
 static const CGFloat kPostSubjectHeight = 50.0;
 
@@ -487,6 +488,14 @@ static const CGFloat kPostSubjectHeight = 50.0;
 {
   JCBUUserInfoViewController *userInfoViewController = [[JCBUUserInfoViewController alloc] initWithUserInfo:_userInfo postAuthor:commentAuthor];
   [self.navigationController pushViewController:userInfoViewController animated:YES];
+}
+
+- (void)didTapProfilePicture:(UIImage *)image
+{
+  JCBUImageDisplayViewController *imageDisplayVC = [[JCBUImageDisplayViewController alloc] initWithImage:image];
+  
+  UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:imageDisplayVC];
+  [self presentViewController:navigationVC animated:YES completion:nil];
 }
 
 - (void)_didTapNewPost:(id)sender
