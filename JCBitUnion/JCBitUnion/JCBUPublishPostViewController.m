@@ -52,10 +52,12 @@
 }
 
 #pragma mark - Targe Action
-                                                                                                                                     
+
+// [TODO] after post is successfully posted, show it in the post thread
 - (void)_didTapPost:(id)sender
 {
   [_publishPostView.loadingIndicator startAnimating];
+  self.navigationItem.rightBarButtonItem.enabled = NO;
   
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^() {
     NSError *error;
@@ -114,6 +116,7 @@
       
       dispatch_async(dispatch_get_main_queue(), ^() {
         [_publishPostView.loadingIndicator stopAnimating];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
         [self.navigationController popViewControllerAnimated:YES];
       });
       
