@@ -18,11 +18,13 @@
     _imageView.frame = CGRectMake(0, 0, _imageView.image.size.width, _imageView.image.size.height);
     
     _scrollView = [[UIScrollView alloc] init];
-    _scrollView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
     [_scrollView addSubview:_imageView];
-    [self addSubview:_imageView];
+    
+    _scrollView.contentSize = _imageView.image.size;
+    
+    [self addSubview:_scrollView];
    
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor blackColor];
   }
   
   return self;
