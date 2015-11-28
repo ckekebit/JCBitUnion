@@ -20,12 +20,14 @@
   if (self = [super init]) {
     _imageDisplayView = [[JCBUImageDisplayView alloc] initWithImage:image];
     
-    self.navigationItem.title = @"View Image";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                          target:self
-                                                                                          action:@selector(_didTapCancel)];
-    
     _imageDisplayView.scrollView.delegate = self;
+    
+    UITapGestureRecognizer *singleTapRecognizer =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(didSingleTapped:)];
+    singleTapRecognizer.numberOfTapsRequired = 1;
+    singleTapRecognizer.numberOfTouchesRequired = 1;
+    [_imageDisplayView.scrollView addGestureRecognizer:singleTapRecognizer];
     
     UITapGestureRecognizer *doubleTapRecognizer =
     [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -33,6 +35,8 @@
     doubleTapRecognizer.numberOfTapsRequired = 2;
     doubleTapRecognizer.numberOfTouchesRequired = 1;
     [_imageDisplayView.scrollView addGestureRecognizer:doubleTapRecognizer];
+    
+    [singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
   }
   
   return self;
@@ -83,11 +87,6 @@
 
 #pragma mark - Target Action
 
-- (void)_didTapCancel
-{
-  [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)didDoubleTapped:(UIGestureRecognizer *)recognizer
 {
   CGPoint pointInView = [recognizer locationInView:_imageDisplayView.imageView];
@@ -105,6 +104,11 @@
   CGRect rectToZoomTo = CGRectMake(x, y, w, h);
   
   [_imageDisplayView.scrollView zoomToRect:rectToZoomTo animated:YES];
+}
+
+- (void)didSingleTapped:(UIGestureRecognizer *)recognizer
+{
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIScrollViewDelegate

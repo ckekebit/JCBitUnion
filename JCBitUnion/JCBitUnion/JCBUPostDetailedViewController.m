@@ -494,8 +494,7 @@ static const CGFloat kPostSubjectHeight = 50.0;
 {
   JCBUImageDisplayViewController *imageDisplayVC = [[JCBUImageDisplayViewController alloc] initWithImage:image];
   
-  UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:imageDisplayVC];
-  [self presentViewController:navigationVC animated:YES completion:nil];
+  [self presentViewController:imageDisplayVC animated:YES completion:nil];
 }
 
 - (void)_didTapNewPost:(id)sender
