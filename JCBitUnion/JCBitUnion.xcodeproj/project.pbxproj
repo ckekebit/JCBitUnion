@@ -48,6 +48,7 @@
 		D9BB2E951BCCE09800778D31 /* JCBUPostDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BB2E941BCCE09800778D31 /* JCBUPostDetailedViewController.m */; };
 		D9BB2E981BCCE2CD00778D31 /* JCBUPostDetailedHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BB2E971BCCE2CD00778D31 /* JCBUPostDetailedHeader.m */; };
 		D9BB2E9B1BCCE50700778D31 /* JCBUPostDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BB2E9A1BCCE50700778D31 /* JCBUPostDetailCell.m */; };
+		D9C647341C0B05E900EF7230 /* JCBUPostDetailedAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C647331C0B05E900EF7230 /* JCBUPostDetailedAttachment.m */; };
 		D9EDFD2A1BC1BCB300C248ED /* noavatar.gif in Resources */ = {isa = PBXBuildFile; fileRef = D9EDFD291BC1BCB300C248ED /* noavatar.gif */; };
 		D9EDFD2D1BC22C9500C248ED /* JCBUFirstPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EDFD2C1BC22C9500C248ED /* JCBUFirstPageView.m */; };
 		D9EDFD301BC2309B00C248ED /* JCBUFirstPagePostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EDFD2F1BC2309B00C248ED /* JCBUFirstPagePostCell.m */; };
@@ -146,6 +147,8 @@
 		D9BB2E971BCCE2CD00778D31 /* JCBUPostDetailedHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUPostDetailedHeader.m; sourceTree = "<group>"; };
 		D9BB2E991BCCE50700778D31 /* JCBUPostDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBUPostDetailCell.h; sourceTree = "<group>"; };
 		D9BB2E9A1BCCE50700778D31 /* JCBUPostDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUPostDetailCell.m; sourceTree = "<group>"; };
+		D9C647321C0B05E900EF7230 /* JCBUPostDetailedAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBUPostDetailedAttachment.h; sourceTree = "<group>"; };
+		D9C647331C0B05E900EF7230 /* JCBUPostDetailedAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUPostDetailedAttachment.m; sourceTree = "<group>"; };
 		D9EDFD291BC1BCB300C248ED /* noavatar.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = noavatar.gif; sourceTree = "<group>"; };
 		D9EDFD2B1BC22C9500C248ED /* JCBUFirstPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCBUFirstPageView.h; sourceTree = "<group>"; };
 		D9EDFD2C1BC22C9500C248ED /* JCBUFirstPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCBUFirstPageView.m; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 				D9BB2E971BCCE2CD00778D31 /* JCBUPostDetailedHeader.m */,
 				D9BB2E991BCCE50700778D31 /* JCBUPostDetailCell.h */,
 				D9BB2E9A1BCCE50700778D31 /* JCBUPostDetailCell.m */,
+				D9C647321C0B05E900EF7230 /* JCBUPostDetailedAttachment.h */,
+				D9C647331C0B05E900EF7230 /* JCBUPostDetailedAttachment.m */,
 				D95709621BCE334500B33C17 /* JCBUPostDetailedBody.h */,
 				D95709631BCE334500B33C17 /* JCBUPostDetailedBody.m */,
 				D97AAB241BF201EF002A773A /* JCBUPostNavigationView.h */,
@@ -541,6 +546,7 @@
 				D9EDFD331BC2403400C248ED /* JUBUOverlayButton.m in Sources */,
 				D904703A1BA690B700BF14BA /* JCBULogOutView.m in Sources */,
 				D9FC6E4F1BAFEC08006F6869 /* JCBUFavoritesViewController.m in Sources */,
+				D9C647341C0B05E900EF7230 /* JCBUPostDetailedAttachment.m in Sources */,
 				D90470151BA510AB00BF14BA /* main.m in Sources */,
 				D91E79151BFDBCFE0010F63A /* JCBUPublishPostViewController.m in Sources */,
 				D9FC6E3B1BAFAA28006F6869 /* JCBUHomepageViewController.m in Sources */,

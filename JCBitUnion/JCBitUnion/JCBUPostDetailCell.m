@@ -9,6 +9,7 @@
 #import "JCBUPostDetailCell.h"
 #import "JCBUPostDetailedHeader.h"
 #import "JCBUPostDetailedBody.h"
+#import "JCBUPostDetailedAttachment.h"
 
 static const CGFloat kPostSubjectHeight = 50.0;
 
@@ -24,6 +25,7 @@ static const CGFloat kPostSubjectHeight = 50.0;
             referencePostTime:(NSString *)referencePostTime
         referencePostBodyText:(NSString *)referencePostBodyText
                  postBodyText:(NSString *)postBodyText
+                   attachment:(NSString *)attachment
 {
   if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
     _postDetailedHeader = [[JCBUPostDetailedHeader alloc] initWithImage:image
@@ -38,6 +40,11 @@ static const CGFloat kPostSubjectHeight = 50.0;
                                                             referencePostBodyText:referencePostBodyText
                                                                      postBodyText:postBodyText];
     [self addSubview:_postDetailedBody];
+    
+    if (attachment) {
+      _postDetailedAttachment = [[JCBUPostDetailedAttachment alloc] initWithImageUrl:attachment];
+      [self addSubview:_postDetailedAttachment];
+    }
   }
   
   return self;
@@ -47,9 +54,18 @@ static const CGFloat kPostSubjectHeight = 50.0;
 {
   [super layoutSubviews];
   CGRect bounds = self.bounds;
-  _postDetailedHeader.frame = CGRectMake(0, 0, bounds.size.width, kPostSubjectHeight);
+  CGFloat yOffset = 0;
+  CGFloat attachmentHeight = _postDetailedAttachment ? 250 : 0;
   
-  _postDetailedBody.frame = CGRectMake(0, kPostSubjectHeight, bounds.size.width, bounds.size.height - kPostSubjectHeight);
+  _postDetailedHeader.frame = CGRectMake(0, yOffset, bounds.size.width, kPostSubjectHeight);
+  yOffset += kPostSubjectHeight;
+  
+  _postDetailedBody.frame = CGRectMake(0, yOffset, bounds.size.width, bounds.size.height - kPostSubjectHeight - attachmentHeight);
+  yOffset += bounds.size.height - kPostSubjectHeight - attachmentHeight;
+  
+  if (_postDetailedAttachment) {
+    _postDetailedAttachment.frame = CGRectMake(0, yOffset, bounds.size.width, 250);
+  }
 }
 
 - (void)initializeCellContentWithImage:(UIImage *)image

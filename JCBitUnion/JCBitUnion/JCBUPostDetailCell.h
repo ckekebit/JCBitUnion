@@ -10,11 +10,13 @@
 
 @class JCBUPostDetailedHeader;
 @class JCBUPostDetailedBody;
+@class JCBUPostDetailedAttachment;
 
 @interface JCBUPostDetailCell : UITableViewCell
 
 @property (nonatomic) JCBUPostDetailedHeader *postDetailedHeader;
 @property (nonatomic) JCBUPostDetailedBody *postDetailedBody;
+@property (nonatomic) JCBUPostDetailedAttachment *postDetailedAttachment;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier
@@ -25,7 +27,8 @@
           referencePostAuthor:(NSString *)referencePostAuthor
             referencePostTime:(NSString *)referencePostTime
         referencePostBodyText:(NSString *)referencePostBodyText
-                 postBodyText:(NSString *)postBodyText;
+                 postBodyText:(NSString *)postBodyText
+                   attachment:(NSString *)attachment;
 
 - (void)initializeCellContentWithImage:(UIImage *)image
                                   name:(NSString *)name

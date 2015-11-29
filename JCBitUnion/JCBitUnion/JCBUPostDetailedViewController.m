@@ -17,6 +17,7 @@
 #import "JCBUUserInfoViewController.h"
 #import "JCBUPublishPostViewController.h"
 #import "JCBUImageDisplayViewController.h"
+#import "JCBUPostDetailedAttachment.h"
 
 static const CGFloat kPostSubjectHeight = 50.0;
 
@@ -32,6 +33,7 @@ static const CGFloat kPostSubjectHeight = 50.0;
   NSString *_postId;
   NSString *_postSubject;
   NSString *_bodyText;
+  NSString *_attachment;
   
   NSString *_referencePostAuthor;
   NSString *_referencePostTime;
@@ -116,7 +118,9 @@ static const CGFloat kPostSubjectHeight = 50.0;
                                                          referencePostBodyText:_referencePostBodyText
                                                                   postBodyText:_postBodyText];
   
-  return height + kPostSubjectHeight;
+  CGFloat cellHeight = height + kPostSubjectHeight + (_attachment ? 250 : 0);
+  
+  return cellHeight;
 }
 
 #pragma mark - UITableViewDataSource
@@ -128,7 +132,6 @@ static const CGFloat kPostSubjectHeight = 50.0;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
   if (indexPath.row == 0) {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"common"];
     cell.textLabel.text = _postSubject;
@@ -138,6 +141,8 @@ static const CGFloat kPostSubjectHeight = 50.0;
     cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
     return cell;
   }
+  
+  _attachment = nil;
   
   JCBUPostDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"postDetailCell"];
   NSString *name = _postDetailedInfos.count == 0 ? nil : [[((JCBUPostDetailedInfo *)_postDetailedInfos[indexPath.row - 1]).author stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -157,6 +162,13 @@ static const CGFloat kPostSubjectHeight = 50.0;
   _bodyText = [[bodyText stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
   [self _parseBodyText];
   
+  NSString *attachment = _postDetailedInfos.count == 0 ? nil : ((JCBUPostDetailedInfo *)_postDetailedInfos[indexPath.row - 1]).attachment;
+  if (attachment && attachment != (id)[NSNull null]) {
+    NSMutableString *partialUrl = [NSMutableString stringWithString:@"http://out.bitunion.org/"];
+    [partialUrl appendString:[[attachment stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    _attachment = partialUrl;
+  }
+  
 //  if (!cell) {
     cell = [[JCBUPostDetailCell alloc] initWithStyle:UITableViewCellStyleDefault
                                      reuseIdentifier:@"postDetailCell"
@@ -167,7 +179,8 @@ static const CGFloat kPostSubjectHeight = 50.0;
                                  referencePostAuthor:_referencePostAuthor
                                    referencePostTime:_referencePostTime
                                referencePostBodyText:_referencePostBodyText
-                                        postBodyText:_postBodyText];
+                                        postBodyText:_postBodyText
+                                          attachment:_attachment];
   
 //  }
 //  
@@ -221,6 +234,22 @@ static const CGFloat kPostSubjectHeight = 50.0;
   } else {
     UIImage *image = [UIImage imageNamed:@"noavatar.gif"];
     cell.postDetailedHeader.imageView.image = image;
+  }
+
+  if (_attachment) {
+    NSLog(@"Fetching attachment: %@", _attachment);
+    NSURL *url = [NSURL URLWithString:_attachment];
+    
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+      if (data) {
+        UIImage *image = [UIImage imageWithData:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+          JCBUPostDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+          cell.postDetailedAttachment.attachmentView.image = image;
+        });
+      }
+    }];
+    [task resume];
   }
   
   return cell;
