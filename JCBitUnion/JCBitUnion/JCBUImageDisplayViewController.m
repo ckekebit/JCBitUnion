@@ -14,6 +14,9 @@
 @end
 
 @implementation JCBUImageDisplayViewController
+{
+  CGFloat _oldScale;
+}
 
 - (instancetype)initWithImage:(UIImage *)image
 {
@@ -81,7 +84,7 @@
   } else {
     contentsFrame.origin.y = 0.0f;
   }
-  _imageDisplayView.scrollView.contentOffset = CGPointMake(0, 0);
+  
   _imageDisplayView.imageView.frame = contentsFrame;
 }
 
@@ -93,6 +96,12 @@
   
   CGFloat newZoomScale = _imageDisplayView.scrollView.zoomScale * 1.5f;
   newZoomScale = MIN(newZoomScale, _imageDisplayView.scrollView.maximumZoomScale);
+  
+  if (_oldScale == newZoomScale) {
+    return;
+  }
+  
+  _oldScale = newZoomScale;
   
   CGSize scrollViewSize = _imageDisplayView.scrollView.bounds.size;
   
