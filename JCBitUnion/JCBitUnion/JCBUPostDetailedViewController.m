@@ -197,6 +197,7 @@ static const CGFloat kPostSubjectHeight = 50.0;
   // [TODO] add cache support. use NSCache: http://blog.csdn.net/willyang519/article/details/41833293
   cell.postDetailedHeader.imageView.image = nil;
   cell.postDetailedHeader.delegate = self;
+  cell.postDetailedAttachment.delegate = self;
   
   NSString *decodedString = nil;
   NSString *avatarUrl = ((JCBUPostDetailedInfo *)_postDetailedInfos[indexPath.row - 1]).avatar;
@@ -511,7 +512,7 @@ static const CGFloat kPostSubjectHeight = 50.0;
   [self _fetchPostDetailedInfoFrom:(_postReplyPageNumber - 1) * 20 To:_postReplyPageNumber * 20 increasePageNumBy:(_postReplyPageNumber - _currentPage)];
 }
 
-#pragma mark - Target Action
+#pragma mark - JCBUPostDetailedHeaderDelegate
 
 - (void)didTapAuthor:(NSString *)commentAuthor
 {
@@ -525,6 +526,17 @@ static const CGFloat kPostSubjectHeight = 50.0;
   
   [self presentViewController:imageDisplayVC animated:YES completion:nil];
 }
+
+#pragma mark - JCBUPostDetailedAttachmentDelegate
+
+- (void)didTapAttachmentView:(UIImage *)image
+{
+  JCBUImageDisplayViewController *imageDisplayVC = [[JCBUImageDisplayViewController alloc] initWithImage:image];
+  
+  [self presentViewController:imageDisplayVC animated:YES completion:nil];
+}
+
+#pragma mark - Target Action
 
 - (void)_didTapNewPost:(id)sender
 {
