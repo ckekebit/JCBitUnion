@@ -98,7 +98,7 @@
   newZoomScale = MIN(newZoomScale, _imageDisplayView.scrollView.maximumZoomScale);
   
   if (_oldScale == newZoomScale) {
-    return;
+    newZoomScale = 1.0;
   }
   
   _oldScale = newZoomScale;
