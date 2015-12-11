@@ -14,9 +14,6 @@
 @end
 
 @implementation JCBUImageDisplayViewController
-{
-  CGFloat _oldScale;
-}
 
 - (instancetype)initWithImage:(UIImage *)image
 {
@@ -60,8 +57,16 @@
   [super viewDidLayoutSubviews];
   
   _imageDisplayView.scrollView.minimumZoomScale = 0.5;
-  _imageDisplayView.scrollView.maximumZoomScale = 2.0;
-  _imageDisplayView.scrollView.zoomScale = 1.0;
+  
+  
+  CGSize imageViewSize = _imageDisplayView.imageView.bounds.size;
+  CGSize screenSize = [UIScreen mainScreen].bounds.size;
+  CGFloat widthScale = screenSize.width / imageViewSize.width;
+  CGFloat heightScale = screenSize.height / imageViewSize.height;
+  
+  _imageDisplayView.scrollView.minimumZoomScale = MIN(0.5, MIN(widthScale, heightScale));
+  _imageDisplayView.scrollView.maximumZoomScale = MAX(2.0, MAX(widthScale, heightScale));
+  _imageDisplayView.scrollView.zoomScale = MIN(widthScale, heightScale);
   
   [self _centerScrollViewContents];
 }
@@ -94,14 +99,7 @@
 {
   CGPoint pointInView = [recognizer locationInView:_imageDisplayView.imageView];
   
-  CGFloat newZoomScale = _imageDisplayView.scrollView.zoomScale * 1.5f;
-  newZoomScale = MIN(newZoomScale, _imageDisplayView.scrollView.maximumZoomScale);
-  
-  if (_oldScale == newZoomScale) {
-    newZoomScale = 1.0;
-  }
-  
-  _oldScale = newZoomScale;
+  CGFloat newZoomScale = _imageDisplayView.scrollView.maximumZoomScale;
   
   CGSize scrollViewSize = _imageDisplayView.scrollView.bounds.size;
   
