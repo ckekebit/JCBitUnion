@@ -53,7 +53,9 @@
 
 #pragma mark - Targe Action
 
-// [TODO] after post is successfully posted, show it in the post thread
+// [TODO]
+// 1. after post is successfully posted, show it in the post thread
+// 2. be able to reply a post: add a post button for each reply in the post thread
 - (void)_didTapPost:(id)sender
 {
   [_publishPostView.loadingIndicator startAnimating];

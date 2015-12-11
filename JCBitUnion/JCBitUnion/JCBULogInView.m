@@ -66,7 +66,7 @@ typedef NS_ENUM(NSUInteger, JCBULogInTextFieldTag) {
     _loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self addSubview:_loadingIndicator];
     
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor colorWithRed:110.0/255 green:183.0/255 blue:1.0 alpha:1];
     
 //    _gView = [[UIView alloc] init];
 //    _gView.backgroundColor = [UIColor whiteColor];
