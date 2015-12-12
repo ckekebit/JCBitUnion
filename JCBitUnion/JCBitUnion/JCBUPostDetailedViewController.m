@@ -520,20 +520,20 @@ static const CGFloat kPostSubjectHeight = 50.0;
   [self.navigationController pushViewController:userInfoViewController animated:YES];
 }
 
-- (void)didTapProfilePicture:(UIImage *)image
+- (void)didTapProfilePicture:(UIImage *)image withFrame:(CGRect)viewFrame
 {
-  JCBUImageDisplayViewController *imageDisplayVC = [[JCBUImageDisplayViewController alloc] initWithImage:image];
+  JCBUImageDisplayViewController *imageDisplayVC = [[JCBUImageDisplayViewController alloc] initWithImage:image withFrame:viewFrame];
   
-  [self presentViewController:imageDisplayVC animated:YES completion:nil];
+  [self presentViewController:imageDisplayVC animated:NO completion:nil];
 }
 
 #pragma mark - JCBUPostDetailedAttachmentDelegate
 
-- (void)didTapAttachmentView:(UIImage *)image
+- (void)didTapAttachmentView:(UIImage *)image withFrame:(CGRect)imageFrame
 {
-  JCBUImageDisplayViewController *imageDisplayVC = [[JCBUImageDisplayViewController alloc] initWithImage:image];
+  JCBUImageDisplayViewController *imageDisplayVC = [[JCBUImageDisplayViewController alloc] initWithImage:image withFrame:imageFrame];
   
-  [self presentViewController:imageDisplayVC animated:YES completion:nil];
+  [self presentViewController:imageDisplayVC animated:NO completion:nil];
 }
 
 #pragma mark - Target Action

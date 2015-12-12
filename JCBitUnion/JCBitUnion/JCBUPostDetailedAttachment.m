@@ -58,7 +58,26 @@ static const CGFloat kAttachmentDimension = 200.0;
 
 - (void)didTapAttachmentView
 {
-  [_delegate didTapAttachmentView:_attachmentView.image];
+  CGSize imageSize = _attachmentView.image.size;
+  CGFloat deltaX = 0;
+  CGFloat deltaY = 0;
+  CGFloat actualImageWidth = 200;
+  CGFloat actualImageHeight = 200;
+  if (imageSize.height > imageSize.width) {
+    actualImageWidth = 200.0 / imageSize.height * imageSize.width;
+    deltaX = (200.0 - actualImageWidth) / 2;
+  } else {
+    actualImageHeight = 200.0 / imageSize.width * imageSize.height;
+    deltaY = (200.0 - actualImageHeight) / 2;
+  }
+  
+  CGRect imageFrame = [_attachmentView convertRect:_attachmentView.bounds toView:nil];
+  CGFloat newX = imageFrame.origin.x + deltaX;
+  CGFloat newY = imageFrame.origin.y + deltaY;
+  
+  CGRect newFrame = CGRectMake(newX, newY, actualImageWidth, actualImageHeight);
+  
+  [_delegate didTapAttachmentView:_attachmentView.image withFrame:newFrame];
 }
 
 @end

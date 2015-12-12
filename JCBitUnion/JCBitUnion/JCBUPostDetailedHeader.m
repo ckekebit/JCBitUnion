@@ -26,6 +26,7 @@
 {
   if (self = [super init]) {
     _imageView = [[UIImageView alloc] init];
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView.image = image;
     [self addSubview:_imageView];
     
@@ -97,7 +98,25 @@
 
 - (void)didTapProfilePicture
 {
-  [_delegate didTapProfilePicture:_imageView.image];
+  CGSize imageSize = _imageView.image.size;
+  CGFloat deltaX = 0;
+  CGFloat deltaY = 0;
+  CGFloat actualImageWidth = 40;
+  CGFloat actualImageHeight = 40;
+  if (imageSize.height > imageSize.width) {
+    actualImageWidth = 40.0 / imageSize.height * imageSize.width;
+    deltaX = (40.0 - actualImageWidth) / 2;
+  } else {
+    actualImageHeight = 40.0 / imageSize.width * imageSize.height;
+    deltaY = (40.0 - actualImageHeight) / 2;
+  }
+  
+  CGRect imageFrame = [_imageView convertRect:_imageView.bounds toView:nil];
+  CGFloat newX = imageFrame.origin.x + deltaX;
+  CGFloat newY = imageFrame.origin.y + deltaY;
+
+  CGRect newFrame = CGRectMake(newX, newY, actualImageWidth, actualImageHeight);
+  [_delegate didTapProfilePicture:_imageView.image withFrame:newFrame];
 }
 
 @end

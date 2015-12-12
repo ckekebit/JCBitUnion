@@ -14,8 +14,11 @@
 @end
 
 @implementation JCBUImageDisplayViewController
+{
+  CGRect _imageFrame;
+}
 
-- (instancetype)initWithImage:(UIImage *)image
+- (instancetype)initWithImage:(UIImage *)image withFrame:(CGRect)imageFrame
 {
   if (self = [super init]) {
     _imageDisplayView = [[JCBUImageDisplayView alloc] initWithImage:image];
@@ -37,6 +40,8 @@
     [_imageDisplayView.scrollView addGestureRecognizer:doubleTapRecognizer];
     
     [singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
+    
+    _imageFrame = imageFrame;
   }
   
   return self;
@@ -53,7 +58,8 @@
   self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
-- (void)viewDidLayoutSubviews {
+- (void)viewDidLayoutSubviews
+{
   [super viewDidLayoutSubviews];
   
   _imageDisplayView.scrollView.minimumZoomScale = 0.5;
@@ -67,8 +73,28 @@
   _imageDisplayView.scrollView.minimumZoomScale = MIN(0.5, MIN(widthScale, heightScale));
   _imageDisplayView.scrollView.maximumZoomScale = MAX(2.0, MAX(widthScale, heightScale));
   _imageDisplayView.scrollView.zoomScale = MIN(widthScale, heightScale);
+  _imageDisplayView.imageView.frame = _imageFrame;
   
-  [self _centerScrollViewContents];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  
+  CGSize boundsSize = _imageDisplayView.scrollView.bounds.size;
+  CGSize screenSize = [UIScreen mainScreen].bounds.size;
+  CGFloat targetScale = MIN(screenSize.width / _imageFrame.size.width, screenSize.height / _imageFrame.size.height);
+  CGFloat endWidth = targetScale * _imageFrame.size.width;
+  CGFloat endHeight = targetScale * _imageFrame.size.height;
+  
+  CGFloat endX = (boundsSize.width - endWidth) / 2.0f;
+  CGFloat endY = (boundsSize.height - endHeight) / 2.0f;
+  
+  [UIView animateWithDuration:0.3f animations:^{
+    _imageDisplayView.imageView.frame = CGRectMake(endX, endY, endWidth, endHeight);
+  } completion:^(BOOL finished) {
+    
+  }];
 }
 
 #pragma mark - helpers
@@ -115,7 +141,7 @@
 
 - (void)didSingleTapped:(UIGestureRecognizer *)recognizer
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 #pragma mark - UIScrollViewDelegate

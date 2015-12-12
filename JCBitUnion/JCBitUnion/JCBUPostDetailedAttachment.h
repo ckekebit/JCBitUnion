@@ -22,6 +22,6 @@
 
 @protocol JCBUPostDetailedAttachmentDelegate <NSObject>
 
-- (void)didTapAttachmentView:(UIImage *)image;
+- (void)didTapAttachmentView:(UIImage *)image withFrame:(CGRect)imageFrame;
 
 @end

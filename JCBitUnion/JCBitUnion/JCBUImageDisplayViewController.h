@@ -14,6 +14,6 @@
 
 @property (nonatomic) JCBUImageDisplayView *imageDisplayView;
 
-- (instancetype)initWithImage:(UIImage *)image;
+- (instancetype)initWithImage:(UIImage *)image withFrame:(CGRect)imageFrame;
 
 @end

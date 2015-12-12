@@ -31,6 +31,6 @@
 
 - (void)didTapAuthor:(NSString *)author;
 
-- (void)didTapProfilePicture:(UIImage *)image;
+- (void)didTapProfilePicture:(UIImage *)image withFrame:(CGRect)viewFrame;
 
 @end
