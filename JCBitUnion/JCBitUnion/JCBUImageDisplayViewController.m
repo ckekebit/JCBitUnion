@@ -67,14 +67,17 @@
   
   CGSize imageViewSize = _imageDisplayView.imageView.bounds.size;
   CGSize screenSize = [UIScreen mainScreen].bounds.size;
-  CGFloat widthScale = screenSize.width / imageViewSize.width;
-  CGFloat heightScale = screenSize.height / imageViewSize.height;
-  
-  _imageDisplayView.scrollView.minimumZoomScale = MIN(0.5, MIN(widthScale, heightScale));
-  _imageDisplayView.scrollView.maximumZoomScale = MAX(2.0, MAX(widthScale, heightScale));
-  _imageDisplayView.scrollView.zoomScale = MIN(widthScale, heightScale);
-  _imageDisplayView.imageView.frame = _imageFrame;
-  
+  CGFloat widthScale = 1.0;
+  CGFloat heightScale = 1.0;
+  if (imageViewSize.width > 0 && imageViewSize.height > 0) {
+    widthScale = screenSize.width / imageViewSize.width;
+    heightScale = screenSize.height / imageViewSize.height;
+    
+    _imageDisplayView.scrollView.minimumZoomScale = MIN(0.5, MIN(widthScale, heightScale));
+    _imageDisplayView.scrollView.maximumZoomScale = MAX(2.0, MAX(widthScale, heightScale));
+    _imageDisplayView.scrollView.zoomScale = MIN(widthScale, heightScale);
+    _imageDisplayView.imageView.frame = _imageFrame;
+  }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -83,12 +86,19 @@
   
   CGSize boundsSize = _imageDisplayView.scrollView.bounds.size;
   CGSize screenSize = [UIScreen mainScreen].bounds.size;
-  CGFloat targetScale = MIN(screenSize.width / _imageFrame.size.width, screenSize.height / _imageFrame.size.height);
-  CGFloat endWidth = targetScale * _imageFrame.size.width;
-  CGFloat endHeight = targetScale * _imageFrame.size.height;
+  CGFloat targetScale = 1.0;
+  CGFloat endWidth = boundsSize.width;
+  CGFloat endHeight = boundsSize.height;
+  CGFloat endX = 0;
+  CGFloat endY = 0;
   
-  CGFloat endX = (boundsSize.width - endWidth) / 2.0f;
-  CGFloat endY = (boundsSize.height - endHeight) / 2.0f;
+  if (_imageFrame.size.width > 0 && _imageFrame.size.height > 0) {
+    targetScale = MIN(screenSize.width / _imageFrame.size.width, screenSize.height / _imageFrame.size.height);
+    endWidth = targetScale * _imageFrame.size.width;
+    endHeight = targetScale * _imageFrame.size.height;
+    endX = (boundsSize.width - endWidth) / 2.0f;
+    endY = (boundsSize.height - endHeight) / 2.0f;
+  }
   
   [UIView animateWithDuration:0.3f animations:^{
     _imageDisplayView.imageView.frame = CGRectMake(endX, endY, endWidth, endHeight);
