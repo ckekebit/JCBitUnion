@@ -21,7 +21,11 @@
 
 static const CGFloat kPostSubjectHeight = 50.0;
 
-@interface JCBUPostDetailedViewController () <UITableViewDataSource, UITableViewDelegate, JCBUPostDetailedHeaderDelegate>
+@interface JCBUPostDetailedViewController ()
+<UITableViewDataSource,
+UITableViewDelegate,
+JCBUPostDetailedHeaderDelegate,
+JCBUPostDetailedAttachmentDelegate>
 
 @end
 
@@ -45,6 +49,7 @@ static const CGFloat kPostSubjectHeight = 50.0;
   NSInteger _postReplyPageNumber;
   
   UIRefreshControl *_ptrControl;
+  NSCache *_imageCache;
 }
 
 // [TODO] add PTR
@@ -69,7 +74,6 @@ static const CGFloat kPostSubjectHeight = 50.0;
     
     _postDetailedInfos = [NSMutableArray new];
     
-    
     _currentPage = 0;
     _postReplyPageNumber = 0;
     
@@ -80,6 +84,8 @@ static const CGFloat kPostSubjectHeight = 50.0;
                     action:@selector(_pullToRefreshFirstPage)
           forControlEvents:UIControlEventValueChanged];
     [_ptrControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Release to refresh"]];
+    
+    _imageCache = [[NSCache alloc] init];
     
     [self _fetchPostReplyPageNumber];
     [self _fetchPostDetailedInfoFrom:0 To:20 increasePageNumBy:1];
@@ -217,20 +223,26 @@ static const CGFloat kPostSubjectHeight = 50.0;
       NSString *urlString = [NSString stringWithFormat:@"%@%@", @"http://out.bitunion.org/", actualImagePath];
       NSURL *url = [NSURL URLWithString:urlString];
       
-      NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (data) {
-          UIImage *image = [UIImage imageWithData:data];
-          if (!image) {
-            image = [UIImage imageNamed:@"noavatar.gif"];
+      if ([_imageCache objectForKey:url]) {
+        cell.postDetailedHeader.imageView.image = [_imageCache objectForKey:url];
+      } else {
+        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+          if (data) {
+            UIImage *image = [UIImage imageWithData:data];
+            if (!image) {
+              image = [UIImage imageNamed:@"noavatar.gif"];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+              JCBUPostDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+              NSLog(@"Current row is: %li", indexPath.row);
+              cell.postDetailedHeader.imageView.image = image;
+              
+              [_imageCache setObject:image forKey:url];
+            });
           }
-          dispatch_async(dispatch_get_main_queue(), ^{
-            JCBUPostDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-            NSLog(@"Current row is: %li", indexPath.row);
-            cell.postDetailedHeader.imageView.image = image;
-          });
-        }
-      }];
-      [task resume];
+        }];
+        [task resume];
+      }
     }
   } else {
     UIImage *image = [UIImage imageNamed:@"noavatar.gif"];
