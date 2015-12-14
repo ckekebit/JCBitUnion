@@ -42,9 +42,10 @@ static const CGFloat kVerticalPadding = 5.0;
     _referencedPostBodyView.scrollEnabled = NO;
     [self addSubview:_referencedPostBodyView];
     
-    
     self.layer.borderColor = [UIColor colorWithRed:226.0/255 green:226.0/255 blue:226.0/255 alpha:1].CGColor;
     self.layer.borderWidth = 2.0f;
+    
+    self.backgroundColor = [UIColor colorWithRed:247.0/255 green:249.0/255 blue:1.0 alpha:1];
   }
   
   return self;

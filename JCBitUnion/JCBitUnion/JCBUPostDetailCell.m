@@ -32,7 +32,6 @@ static const CGFloat kPostSubjectHeight = 50.0;
                                                                    name:name
                                                             floorNumber:floorNumber
                                                               timestamp:timestamp];
-    _postDetailedHeader.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
     [self addSubview:_postDetailedHeader];
     
     _postDetailedBody = [[JCBUPostDetailedBody alloc] initWithReferencePostAuthor:referencePostAuthor

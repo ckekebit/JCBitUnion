@@ -57,6 +57,8 @@
     _timestamp.font = [UIFont systemFontOfSize:14];
     _timestamp.textAlignment = NSTextAlignmentRight;
     [self addSubview:_timestamp];
+    
+    self.backgroundColor = [UIColor colorWithRed:235.0/255 green:239.0/255 blue:249.0/255 alpha:1];
   }
   
   return self;

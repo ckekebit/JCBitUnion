@@ -44,7 +44,7 @@ static const CGFloat kPostTextBodyEdgePadding = 10.0;
     _referencePostTime = referencePostTime;
     _referencePostBodyText = referencePostBodyText;
     
-    self.backgroundColor = [UIColor colorWithRed:1.0 green:252.0/255 blue:229.0/255 alpha:1.0];
+    self.backgroundColor = [UIColor whiteColor];
   }
   
   return self;
